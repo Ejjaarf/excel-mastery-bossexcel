@@ -1,35 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){
-n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-};
-if(!f._fbq)f._fbq=n;
-n.push=n;
-n.loaded=!0;
-n.version='2.0';
-n.queue=[];
-t=b.createElement(e);
-t.async=!0;
-t.src=v;
-s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '602169539233067');
-fbq('track', 'PageView');
-</script>
-
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
-/>
-</noscript>
-<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOSS EXCEL — Naik Jabatan Gara-Gara Excel</title>
@@ -207,19 +178,17 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
     background:var(--green-deep); color:#fff;
     padding:64px 32px; border-radius:0;
   }
-  .benefit-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:var(--green-line); max-width:1120px; margin:0 auto;
-    border:1px solid var(--green-line); border-radius:16px; overflow:hidden;
+
+  .materi-list{
+    list-style:none; max-width:680px; margin:0 auto;
   }
-  .benefit-cell{background:var(--green-deep); padding:32px;}
-  .benefit-cell h3{font-size:1.5rem; color:var(--mint); font-weight:800; margin-bottom:14px;}
-  .benefit-cell p{font-size:0.92rem; color:rgba(255,255,255,0.7); line-height:1.6;}
-  .benefit-cell a{
-    display:inline-block; margin-top:16px; font-size:0.85rem; font-weight:600;
-    color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.4);
+  .materi-list li{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--green-line);
   }
-  @media (max-width:760px){ .benefit-grid{grid-template-columns:1fr;} }
+  .materi-list li:first-child{border-top:1px solid var(--green-line);}
+  .materi-icon{font-size:1.15rem; flex-shrink:0; line-height:1.5;}
+  .materi-list p{color:rgba(255,255,255,0.85); font-size:1.02rem; line-height:1.55;}
 
   /* SOLUTION / MASALAH */
   .solution{background:var(--cream);}
@@ -463,17 +432,16 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
     <div class="eyebrow" style="color:var(--mint);">Live Learning Gratis</div>
     <h2 style="color:#fff;">Di Live Learning GRATIS Ini Anda Akan Belajar</h2>
   </div>
-  <div class="benefit-grid reveal" style="grid-template-columns:repeat(2,1fr);">
-    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara mengolah data dengan lebih cepat dan efisien.</p></div>
-    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menggunakan Pivot Table untuk menganalisis data.</p></div>
-    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara membuat dashboard yang mudah dipahami.</p></div>
-    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menyusun laporan yang lebih profesional.</p></div>
-  </div>
-  <div class="benefit-grid reveal" style="grid-template-columns:1fr; margin-top:1px;">
-    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menyajikan data agar lebih mudah dipahami oleh atasan.</p></div>
-  </div>
+  <ul class="materi-list reveal">
+    <li><span class="materi-icon">📊</span><p>Cara mengolah data dengan lebih cepat dan efisien.</p></li>
+    <li><span class="materi-icon">📊</span><p>Cara menggunakan Pivot Table untuk menganalisis data.</p></li>
+    <li><span class="materi-icon">📊</span><p>Cara membuat dashboard yang mudah dipahami.</p></li>
+    <li><span class="materi-icon">📊</span><p>Cara menyusun laporan yang lebih profesional.</p></li>
+    <li><span class="materi-icon">📊</span><p>Cara menyajikan data agar lebih mudah dipahami oleh atasan.</p></li>
+  </ul>
   <p style="text-align:center; max-width:640px; margin:28px auto 0; color:rgba(255,255,255,0.6); font-size:0.92rem;">Semua materi disampaikan menggunakan studi kasus yang sering ditemui di dunia kerja sehingga mudah dipraktikkan.</p>
 </div>
+
 
 <section class="mentor" id="mentor">
   <div class="eyebrow" style="color:var(--mint);">Belajar Langsung Bersama</div>
@@ -530,6 +498,10 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
     <div class="eyebrow" style="color:var(--mint);">Daftar Sekarang</div>
     <h2>Siap Meningkatkan Value Anda di Dunia Kerja?</h2>
     <p>Jangan lewatkan kesempatan belajar langsung bersama Microsoft Certified Excel Expert secara GRATIS. Isi data di bawah ini dan bergabung sekarang juga.</p>
+  </div>
+
+  <div class="cover-wrap reveal">
+    <img src="https://raw.githubusercontent.com/Ejjaarf/excel-mastery-bossexcel/main/COVER.png" alt="BOSS EXCEL - Naik Jabatan Gara-Gara Excel" class="cover-img">
   </div>
 
   <form class="form-card reveal" id="registerForm">
@@ -590,17 +562,13 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
       body: formData
     })
     .then(function(){
-  // Meta Pixel Lead Event
-  fbq('track', 'Lead');
-
-  statusEl.innerHTML = "✅ Pendaftaran berhasil! Mengarahkan ke grup WhatsApp...";
-  statusEl.className = "form-status show success";
-  form.reset();
-
-  setTimeout(function(){
-    window.location.href = WHATSAPP_GROUP_URL;
-  }, 1400);
-})
+      statusEl.innerHTML = "✅ Pendaftaran berhasil! Mengarahkan ke grup WhatsApp...";
+      statusEl.className = "form-status show success";
+      form.reset();
+      setTimeout(function(){
+        window.location.href = WHATSAPP_GROUP_URL;
+      }, 1400);
+    })
     .catch(function(){
       statusEl.innerHTML = "Terjadi kendala saat mengirim data. Silakan langsung join grup di sini: <a class='wa-fallback' href='" + WHATSAPP_GROUP_URL + "' target='_blank'>Join Grup WhatsApp</a>";
       statusEl.className = "form-status show error";
