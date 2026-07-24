@@ -212,6 +212,23 @@
   .callout p{color:var(--muted); font-size:1.02rem; line-height:1.65; margin-top:14px;}
   .callout p:first-child{margin-top:0;}
 
+  /* EMPHASIS CARD */
+  .emphasis-card{
+    max-width:640px; margin:24px auto 0;
+    background:var(--white); border-left:4px solid var(--accent);
+    border-radius:10px; padding:22px 26px;
+    box-shadow:0 8px 24px rgba(21,52,40,0.08);
+  }
+  .emphasis-card p{
+    color:var(--ink); font-size:1.05rem; font-weight:600; line-height:1.6;
+    text-align:left; margin:0;
+  }
+  .emphasis-card-dark{
+    background:rgba(255,255,255,0.06); border-left:4px solid var(--mint);
+    box-shadow:none;
+  }
+  .emphasis-card-dark p{color:#fff;}
+
   /* MENTOR SPOTLIGHT */
   .mentor{background:var(--green-mid); color:#fff; text-align:center;}
   .mentor-photo-wrap{width:132px; height:132px; margin:20px auto 0; border-radius:50%; overflow:hidden; border:3px solid var(--mint); box-shadow:0 14px 30px rgba(0,0,0,0.25);}
@@ -403,6 +420,8 @@
   <div class="callout reveal">
     <p>Kalau salah satunya adalah Anda, berarti Anda tidak sendirian. Masalahnya bukan karena Anda kurang pintar.</p>
     <p>Banyak karyawan hanya diajarkan cara menggunakan Excel, tetapi tidak pernah diajarkan cara mengolah data menjadi laporan yang membantu atasan mengambil keputusan.</p>
+  </div>
+  <div class="emphasis-card reveal">
     <p>Padahal, di dunia kerja, kemampuan mengolah data sering kali menjadi pembeda antara karyawan biasa dengan karyawan yang lebih dipercaya.</p>
   </div>
   <div style="text-align:center; margin-top:32px;">
@@ -459,7 +478,9 @@
     <span class="badge-pill">🏆 Telah Membantu 10.000+ Profesional Mengembangkan Skill Excel</span>
   </div>
   <p style="max-width:60ch; margin:28px auto 0; color:rgba(255,255,255,0.75); font-size:0.98rem; line-height:1.65;">Aditya Wijaya merupakan Microsoft Certified Excel Expert yang telah berpengalaman mengajarkan Excel kepada ribuan profesional dari berbagai industri. Pada tahun 2025, beliau berhasil melaju hingga Babak Quarter Final (8 Besar) Microsoft Excel World Championship Indonesia, membuktikan kompetensinya dalam penguasaan Microsoft Excel di tingkat nasional.</p>
-  <p style="max-width:60ch; margin:14px auto 0; color:rgba(255,255,255,0.75); font-size:0.98rem; line-height:1.65;">Di sesi Live Learning ini, Anda akan belajar langsung bagaimana cara mengolah data secara efektif menggunakan pendekatan yang relevan dengan kebutuhan dunia kerja.</p>
+  <div class="emphasis-card emphasis-card-dark reveal">
+    <p>Di sesi Live Learning ini, Anda akan belajar langsung bagaimana cara mengolah data secara efektif menggunakan pendekatan yang relevan dengan kebutuhan dunia kerja.</p>
+  </div>
 </section>
 
 <section>
