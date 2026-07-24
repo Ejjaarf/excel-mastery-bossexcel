@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSS EXCEL — Naik Jabatan Gara-Gara Excel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#153428;
+    --green-mid:#1c4636;
+    --green-line:rgba(255,255,255,0.10);
+    --mint:#d7f0dd;
+    --mint-text:#153428;
+    --accent:#2f7d52;
+    --accent-dark:#20603d;
+    --cream:#f7f4ec;
+    --white:#ffffff;
+    --ink:#16211c;
+    --muted:#5d6b63;
+    --border:#e6e0d1;
+    --red:#c1543d;
+    --font-head:'Sora', sans-serif;
+    --font-body:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--font-head); line-height:1.12; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1120px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  nav.topnav{
+    position:sticky; top:0; z-index:80;
+    background:rgba(21,52,40,0.96);
+    backdrop-filter:blur(6px);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{font-family:var(--font-head); font-weight:700; font-size:1.05rem; color:#fff; letter-spacing:-0.01em;}
+  .logo span{color:var(--mint);}
+  .logo-img{height:26px; width:auto; display:block;}
+  .nav-links{display:flex; gap:32px; font-size:0.92rem; color:rgba(255,255,255,0.75);}
+  .nav-links a{text-decoration:none; transition:color 0.15s;}
+  .nav-links a:hover{color:#fff;}
+  .nav-cta{
+    background:var(--mint); color:var(--mint-text); font-weight:600; font-size:0.88rem;
+    padding:10px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;
+  }
+  @media (max-width:760px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{
+    background:var(--green-deep);
+    padding:64px 32px 0;
+    text-align:center;
+    color:#fff;
+  }
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.08); border:1px solid var(--green-line);
+    padding:7px 16px; border-radius:100px; font-size:0.78rem; color:rgba(255,255,255,0.85);
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    max-width:16ch; margin:0 auto; font-weight:700;
+  }
+  .hero p.sub{
+    max-width:52ch; margin:22px auto 0; color:rgba(255,255,255,0.7);
+    font-size:1.05rem; line-height:1.6;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--mint); color:var(--mint-text);
+    font-weight:700; font-size:0.98rem;
+    padding:15px 28px; border-radius:100px; text-decoration:none; border:none; cursor:pointer;
+    margin-top:32px; transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.18);}
+  .hero-caption{
+    font-size:0.82rem; color:rgba(255,255,255,0.5); margin-top:14px;
+  }
+
+  /* COVER IMAGE */
+  .cover-wrap{max-width:380px; margin:44px auto 0;}
+  .cover-img{width:100%; border-radius:18px; box-shadow:0 25px 50px rgba(0,0,0,0.3);}
+
+  /* HERO MOCKUP CARD */
+  .mockup-wrap{ margin-top:52px; padding-bottom:0; }
+  .mockup-card{
+    background:var(--white); border-radius:18px 18px 0 0;
+    max-width:920px; margin:0 auto;
+    box-shadow:0 30px 60px rgba(0,0,0,0.25);
+    padding:22px 22px 0;
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    transform:translateY(2px);
+  }
+  .mockup-panel{
+    background:#fbfaf6; border:1px solid var(--border); border-radius:12px;
+    padding:18px; text-align:left;
+  }
+  .mockup-label{font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:12px;}
+  .mockup-panel.before .mockup-label{color:var(--red);}
+  .mockup-panel.after .mockup-label{color:var(--accent);}
+  .messy-line{height:9px; border-radius:4px; background:#e8ddd6; margin-bottom:9px; opacity:0.9;}
+  .messy-line:nth-child(2){width:78%;}
+  .messy-line:nth-child(3){width:92%;}
+  .messy-line:nth-child(4){width:60%;}
+  .messy-line:nth-child(5){width:85%;}
+  .messy-tag{
+    display:inline-block; font-size:0.68rem; color:var(--red); background:rgba(193,84,61,0.1);
+    padding:2px 8px; border-radius:6px; margin-top:8px;
+  }
+  .bars{display:flex; align-items:flex-end; gap:8px; height:80px; margin-bottom:10px;}
+  .bars div{flex:1; background:var(--accent); border-radius:4px 4px 0 0; opacity:0.85;}
+  .after-stat{display:flex; align-items:center; gap:10px; margin-top:6px;}
+  .donut{
+    width:38px; height:38px; border-radius:50%;
+    background:conic-gradient(var(--accent) 0% 72%, #dfe8e1 72% 100%);
+    flex-shrink:0;
+  }
+  .after-stat p{font-size:0.8rem; color:var(--muted);}
+  .after-stat strong{display:block; font-size:1.1rem; color:var(--ink);}
+
+  /* STATS */
+  .stats{
+    background:var(--white);
+    padding:56px 32px 60px;
+    border-bottom:1px solid var(--border);
+  }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    max-width:1120px; margin:0 auto; text-align:center;
+  }
+  .stat h3{font-size:clamp(1.5rem,3vw,2.1rem); color:var(--green-deep); font-weight:800;}
+  .stat p{font-size:0.85rem; color:var(--muted); margin-top:6px;}
+  @media (max-width:760px){ .stats-grid{grid-template-columns:1fr 1fr; row-gap:36px;} }
+
+  /* SECTION GENERIC */
+  section{padding:88px 32px;}
+  .section-head{max-width:640px; margin:0 auto 44px; text-align:center;}
+  .eyebrow{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:12px;
+  }
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem); color:var(--ink);}
+  .section-head p{margin-top:14px; color:var(--muted); font-size:1.02rem; line-height:1.6;}
+
+  /* FEATURES GRID */
+  .feat-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+    max-width:1120px; margin:0 auto;
+  }
+  .feat-grid .wide{grid-column:span 1.5;}
+  .feat-card{
+    background:var(--white); border:1px solid var(--border); border-radius:16px;
+    padding:28px; text-align:left;
+  }
+  .feat-icon{font-size:1.6rem; margin-bottom:16px;}
+  .feat-card h3{font-size:1.08rem; font-weight:700; color:var(--ink);}
+  .feat-card p{margin-top:8px; font-size:0.92rem; color:var(--muted); line-height:1.55;}
+  .feat-row2{display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:1120px; margin:20px auto 0;}
+  @media (max-width:760px){ .feat-grid, .feat-row2{grid-template-columns:1fr;} }
+
+  /* DARK BENEFIT BLOCK */
+  .benefit-block{
+    background:var(--green-deep); color:#fff;
+    padding:64px 32px; border-radius:0;
+  }
+  .benefit-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--green-line); max-width:1120px; margin:0 auto;
+    border:1px solid var(--green-line); border-radius:16px; overflow:hidden;
+  }
+  .benefit-cell{background:var(--green-deep); padding:32px;}
+  .benefit-cell h3{font-size:1.5rem; color:var(--mint); font-weight:800; margin-bottom:14px;}
+  .benefit-cell p{font-size:0.92rem; color:rgba(255,255,255,0.7); line-height:1.6;}
+  .benefit-cell a{
+    display:inline-block; margin-top:16px; font-size:0.85rem; font-weight:600;
+    color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.4);
+  }
+  @media (max-width:760px){ .benefit-grid{grid-template-columns:1fr;} }
+
+  /* SOLUTION SPLIT */
+  .solution{background:var(--cream);}
+  .solution-inner{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+    max-width:1120px; margin:0 auto;
+  }
+  .solution-text h2{font-size:clamp(1.6rem,3vw,2.1rem); color:var(--ink);}
+  .solution-text p{margin-top:16px; color:var(--muted); font-size:1rem; line-height:1.65;}
+  .solution-text a.link-cta{
+    display:inline-flex; align-items:center; gap:6px; margin-top:22px;
+    color:var(--accent); font-weight:700; text-decoration:none; font-size:0.95rem;
+  }
+  .num-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden;}
+  .num-cell{background:var(--white); padding:24px;}
+  .num-cell .idx{font-size:0.75rem; color:var(--accent); font-weight:700; margin-bottom:10px;}
+  .num-cell h4{font-size:0.98rem; font-weight:700; color:var(--ink);}
+  .num-cell p{font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.5;}
+  @media (max-width:820px){ .solution-inner{grid-template-columns:1fr;} }
+
+  /* PROBLEM LIST */
+  .problem-list{max-width:680px; margin:0 auto;}
+  .problem-item{
+    display:flex; align-items:center; gap:16px;
+    padding:18px 0; border-bottom:1px solid var(--border);
+  }
+  .problem-item:first-child{border-top:1px solid var(--border);}
+  .problem-item .idx{font-size:1.1rem; flex-shrink:0;}
+  .problem-item p{font-size:1.02rem; color:var(--ink); line-height:1.5;}
+  .callout{
+    max-width:640px; margin:36px auto 0; text-align:center;
+  }
+  .callout p{color:var(--muted); font-size:1.02rem; line-height:1.65; margin-top:14px;}
+  .callout p:first-child{margin-top:0;}
+
+  /* MENTOR SPOTLIGHT */
+  .mentor{background:var(--green-mid); color:#fff; text-align:center;}
+  .mentor-photo-wrap{width:132px; height:132px; margin:20px auto 0; border-radius:50%; overflow:hidden; border:3px solid var(--mint); box-shadow:0 14px 30px rgba(0,0,0,0.25);}
+  .mentor-photo{width:100%; height:100%; object-fit:cover; object-position:top center;}
+  .quote-mark{font-family:var(--font-head); font-size:3.5rem; color:var(--mint); line-height:1; margin-bottom:8px;}
+  .mentor blockquote{
+    font-family:var(--font-head); font-size:clamp(1.3rem,2.6vw,1.75rem); font-weight:600;
+    max-width:34ch; margin:0 auto; line-height:1.4;
+  }
+  .mentor-id{margin-top:26px;}
+  .mentor-id strong{display:block; font-size:1.05rem;}
+  .mentor-id span{font-size:0.85rem; color:rgba(255,255,255,0.65);}
+  .badge-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:30px; max-width:760px; margin-left:auto; margin-right:auto;
+  }
+  .badge-pill{
+    font-size:0.82rem; background:rgba(255,255,255,0.08); border:1px solid var(--green-line);
+    padding:9px 16px; border-radius:100px; color:rgba(255,255,255,0.85);
+  }
+
+  /* AUDIENCE CHIPS */
+  .chip-row{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:760px; margin:0 auto;}
+  .chip{
+    font-size:0.88rem; padding:10px 18px; border-radius:100px; border:1px solid var(--border);
+    background:var(--white); color:var(--ink);
+  }
+  .chip.wide{background:var(--mint); color:var(--mint-text); border-color:var(--mint); font-weight:600;}
+
+  /* BONUS GRID */
+  .bonus-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1120px; margin:0 auto;
+  }
+  .bonus-card{
+    background:var(--white); border:1px solid var(--border); border-radius:16px;
+    padding:24px; text-align:left;
+  }
+  .bonus-card .gift{font-size:1.5rem;}
+  .bonus-card p{margin-top:14px; font-size:0.95rem; font-weight:600; color:var(--ink); line-height:1.4;}
+  @media (max-width:900px){ .bonus-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:500px){ .bonus-grid{grid-template-columns:1fr;} }
+
+  /* FORM SECTION */
+  .form-section{
+    background:var(--green-deep); color:#fff; text-align:center;
+  }
+  .form-section .section-head h2{color:#fff;}
+  .form-section .section-head p{color:rgba(255,255,255,0.7);}
+  .form-card{
+    background:var(--white); border-radius:20px; max-width:480px; margin:0 auto;
+    padding:36px 32px; text-align:left; box-shadow:0 30px 60px rgba(0,0,0,0.25);
+  }
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:7px;}
+  .field input{
+    width:100%; padding:13px 14px; border-radius:10px; border:1px solid var(--border);
+    font-family:var(--font-body); font-size:0.95rem; color:var(--ink); background:#fbfaf6;
+    outline:none; transition:border-color 0.15s;
+  }
+  .field input:focus{border-color:var(--accent);}
+  .form-submit{
+    width:100%; padding:15px; background:var(--accent); color:#fff; border:none;
+    border-radius:10px; font-weight:700; font-size:0.98rem; cursor:pointer; margin-top:6px;
+    transition:background 0.15s;
+  }
+  .form-submit:hover{background:var(--accent-dark);}
+  .form-submit:disabled{opacity:0.6; cursor:not-allowed;}
+  .form-note{font-size:0.78rem; color:var(--muted); margin-top:14px; text-align:center;}
+  .form-status{
+    margin-top:16px; font-size:0.88rem; text-align:center; display:none; line-height:1.5;
+  }
+  .form-status.show{display:block;}
+  .form-status.success{color:var(--accent-dark); font-weight:600;}
+  .form-status.error{color:var(--red); font-weight:600;}
+  .wa-fallback{display:inline-block; margin-top:8px; color:var(--accent-dark); font-weight:700; text-decoration:underline;}
+
+  footer{
+    background:var(--green-deep); color:rgba(255,255,255,0.5);
+    text-align:center; padding:30px 32px 40px; font-size:0.78rem; line-height:1.6;
+    border-top:1px solid var(--green-line);
+  }
+  footer strong{color:rgba(255,255,255,0.75);}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="logo"><img src="https://raw.githubusercontent.com/Ejjaarf/excel-mastery-bossexcel/main/logo.png" alt="BOSS EXCEL" class="logo-img"></div>
+    <div class="nav-links">
+      <a href="#materi">Materi</a>
+      <a href="#mentor">Mentor</a>
+      <a href="#bonus">Bonus</a>
+    </div>
+    <a href="#form" class="nav-cta">Daftar Gratis</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow-pill">Live Learning Gratis</div>
+  <h1 style="text-transform:uppercase;">Naik Jabatan Gara-Gara Excel</h1>
+  <p class="sub">Atasan tidak butuh laporan yang tebal. Mereka butuh laporan yang langsung bisa dipahami.<br>Belajar cara mengolah data, membuat dashboard, dan menyajikan laporan yang lebih efektif bersama Aditya Wijaya, Microsoft Certified Excel Expert.</p>
+  <a href="#form" class="btn-primary">🎯 JOIN GRUP BELAJAR GRATIS</a>
+  <div class="hero-caption">Gratis · Kelas Live · Kuota Terbatas</div>
+
+  <div class="cover-wrap reveal">
+    <img src="https://raw.githubusercontent.com/Ejjaarf/excel-mastery-bossexcel/main/COVER.png" alt="BOSS EXCEL - Naik Jabatan Gara-Gara Excel" class="cover-img">
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="mockup-card reveal">
+      <div class="mockup-panel before">
+        <div class="mockup-label">Sebelum</div>
+        <div class="messy-line"></div>
+        <div class="messy-line"></div>
+        <div class="messy-line"></div>
+        <div class="messy-line"></div>
+        <div class="messy-line"></div>
+        <span class="messy-tag">⚠ Sulit dipahami atasan</span>
+      </div>
+      <div class="mockup-panel after">
+        <div class="mockup-label">Sesudah Ikut BOSS EXCEL</div>
+        <div class="bars">
+          <div style="height:35%"></div>
+          <div style="height:60%"></div>
+          <div style="height:45%"></div>
+          <div style="height:82%"></div>
+          <div style="height:68%"></div>
+        </div>
+        <div class="after-stat">
+          <div class="donut"></div>
+          <p><strong>Dashboard Rapi</strong>Mudah dipahami atasan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat"><h3>10.000+</h3><p>Profesional Dibantu</p></div>
+    <div class="stat"><h3>10+</h3><p>Tahun Pengalaman</p></div>
+    <div class="stat"><h3>8 Besar</h3><p>Excel World Championship ID 2025</p></div>
+    <div class="stat"><h3>100%</h3><p>Gratis, Tanpa Biaya</p></div>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="section-head">
+    <div class="eyebrow">Masalah</div>
+    <h2>Apakah Anda Pernah Mengalami Hal Ini?</h2>
+  </div>
+  <div class="problem-list reveal">
+    <div class="problem-item"><span class="idx">❌</span><p>Masih bingung menggunakan Pivot Table?</p></div>
+    <div class="problem-item"><span class="idx">❌</span><p>Laporan Excel terlihat berantakan dan sulit dipahami?</p></div>
+    <div class="problem-item"><span class="idx">❌</span><p>Presentasi data sering membuat atasan bingung?</p></div>
+    <div class="problem-item"><span class="idx">❌</span><p>Menghabiskan waktu berjam-jam hanya untuk membuat laporan?</p></div>
+    <div class="problem-item"><span class="idx">❌</span><p>Ingin naik jabatan, tapi belum punya skill yang membuat Anda lebih menonjol?</p></div>
+  </div>
+  <div class="callout reveal">
+    <p>Kalau salah satunya adalah Anda, berarti Anda tidak sendirian. Masalahnya bukan karena Anda kurang pintar.</p>
+    <p>Banyak karyawan hanya diajarkan cara menggunakan Excel, tetapi tidak pernah diajarkan cara mengolah data menjadi laporan yang membantu atasan mengambil keputusan.</p>
+    <p>Padahal, di dunia kerja, kemampuan mengolah data sering kali menjadi pembeda antara karyawan biasa dengan karyawan yang lebih dipercaya.</p>
+  </div>
+  <div style="text-align:center; margin-top:32px;">
+    <a href="#form" class="link-cta">Daftar Live Learning Gratis →</a>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">Kenapa Excel Penting</div>
+    <h2>Kenapa Skill Excel Penting?</h2>
+    <p>Excel bukan sekadar software untuk membuat tabel. Excel adalah alat yang digunakan banyak perusahaan untuk membaca performa bisnis, membuat laporan, menganalisis data, hingga membantu pengambilan keputusan. Semakin baik Anda mengolah data, semakin mudah Anda:</p>
+  </div>
+  <div class="feat-grid reveal">
+    <div class="feat-card"><div class="feat-icon">✅</div><p>Membuat laporan yang lebih profesional.</p></div>
+    <div class="feat-card"><div class="feat-icon">✅</div><p>Menyampaikan insight kepada atasan.</p></div>
+    <div class="feat-card"><div class="feat-icon">✅</div><p>Membuat dashboard yang informatif.</p></div>
+  </div>
+  <div class="feat-row2 reveal">
+    <div class="feat-card"><div class="feat-icon">✅</div><p>Bekerja lebih cepat dan lebih efisien.</p></div>
+  </div>
+  <p style="text-align:center; max-width:640px; margin:32px auto 0; color:var(--muted);">Excel bukan hanya membuat pekerjaan lebih mudah. Skill ini juga membantu meningkatkan value Anda di dunia kerja.</p>
+</section>
+
+<div class="benefit-block" id="materi">
+  <div class="section-head" style="max-width:720px;">
+    <div class="eyebrow" style="color:var(--mint);">Live Learning Gratis</div>
+    <h2 style="color:#fff;">Di Live Learning GRATIS Ini Anda Akan Belajar</h2>
+  </div>
+  <div class="benefit-grid reveal" style="grid-template-columns:repeat(2,1fr);">
+    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara mengolah data dengan lebih cepat dan efisien.</p></div>
+    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menggunakan Pivot Table untuk menganalisis data.</p></div>
+    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara membuat dashboard yang mudah dipahami.</p></div>
+    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menyusun laporan yang lebih profesional.</p></div>
+  </div>
+  <div class="benefit-grid reveal" style="grid-template-columns:1fr; margin-top:1px;">
+    <div class="benefit-cell"><p style="color:rgba(255,255,255,0.85); font-size:1rem;">📊 Cara menyajikan data agar lebih mudah dipahami oleh atasan.</p></div>
+  </div>
+  <p style="text-align:center; max-width:640px; margin:28px auto 0; color:rgba(255,255,255,0.6); font-size:0.92rem;">Semua materi disampaikan menggunakan studi kasus yang sering ditemui di dunia kerja sehingga mudah dipraktikkan.</p>
+</div>
+
+<section class="mentor" id="mentor">
+  <div class="eyebrow" style="color:var(--mint);">Belajar Langsung Bersama</div>
+  <div class="mentor-photo-wrap reveal">
+    <img src="https://raw.githubusercontent.com/Ejjaarf/excel-mastery-bossexcel/main/Adit%20Wijaya.png" alt="Aditya Wijaya - Microsoft Certified Excel Expert" class="mentor-photo">
+  </div>
+  <div class="mentor-id" style="margin-top:22px;">
+    <strong style="font-family:var(--font-head); font-size:1.8rem;">Aditya Wijaya</strong>
+    <span>Microsoft Certified Excel Expert</span>
+  </div>
+  <div class="badge-row">
+    <span class="badge-pill">🏆 Microsoft Certified Excel Expert</span>
+    <span class="badge-pill">🏆 Quarter Finalist Microsoft Excel World Championship Indonesia 2025</span>
+    <span class="badge-pill">🏆 10+ Tahun Pengalaman di Bidang Excel & Business Intelligence</span>
+    <span class="badge-pill">🏆 Telah Membantu 10.000+ Profesional Mengembangkan Skill Excel</span>
+  </div>
+  <p style="max-width:60ch; margin:28px auto 0; color:rgba(255,255,255,0.75); font-size:0.98rem; line-height:1.65;">Aditya Wijaya merupakan Microsoft Certified Excel Expert yang telah berpengalaman mengajarkan Excel kepada ribuan profesional dari berbagai industri. Pada tahun 2025, beliau berhasil melaju hingga Babak Quarter Final (8 Besar) Microsoft Excel World Championship Indonesia, membuktikan kompetensinya dalam penguasaan Microsoft Excel di tingkat nasional.</p>
+  <p style="max-width:60ch; margin:14px auto 0; color:rgba(255,255,255,0.75); font-size:0.98rem; line-height:1.65;">Di sesi Live Learning ini, Anda akan belajar langsung bagaimana cara mengolah data secara efektif menggunakan pendekatan yang relevan dengan kebutuhan dunia kerja.</p>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">Untuk Siapa</div>
+    <h2>Live Learning Ini Cocok Untuk</h2>
+  </div>
+  <div class="chip-row reveal">
+    <span class="chip">✔ Karyawan</span>
+    <span class="chip">✔ Admin</span>
+    <span class="chip">✔ Finance</span>
+    <span class="chip">✔ Accounting</span>
+    <span class="chip">✔ HR</span>
+    <span class="chip">✔ Purchasing</span>
+    <span class="chip">✔ Supervisor</span>
+    <span class="chip">✔ Fresh Graduate</span>
+    <span class="chip wide">✔ Siapa saja yang ingin meningkatkan kemampuan Excel untuk menunjang karier.</span>
+  </div>
+</section>
+
+<section id="bonus">
+  <div class="section-head">
+    <div class="eyebrow">Bonus</div>
+    <h2>Bonus yang Akan Anda Dapatkan</h2>
+  </div>
+  <div class="bonus-grid reveal">
+    <div class="bonus-card"><div class="gift">🎁</div><p>File latihan Excel</p></div>
+    <div class="bonus-card"><div class="gift">🎁</div><p>Template Dashboard</p></div>
+    <div class="bonus-card"><div class="gift">🎁</div><p>Materi pembelajaran</p></div>
+    <div class="bonus-card"><div class="gift">🎁</div><p>Kesempatan bertanya langsung kepada mentor</p></div>
+  </div>
+</section>
+
+<section class="form-section" id="form">
+  <div class="section-head">
+    <div class="eyebrow" style="color:var(--mint);">Daftar Sekarang</div>
+    <h2>Siap Meningkatkan Value Anda di Dunia Kerja?</h2>
+    <p>Jangan lewatkan kesempatan belajar langsung bersama Microsoft Certified Excel Expert secara GRATIS. Isi data di bawah ini dan bergabung sekarang juga.</p>
+  </div>
+
+  <form class="form-card reveal" id="registerForm">
+    <div class="field">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" name="nama" placeholder="Nama Anda" required>
+    </div>
+    <div class="field">
+      <label for="whatsapp">Nomor WhatsApp</label>
+      <input type="tel" id="whatsapp" name="whatsapp" placeholder="08xxxxxxxxxx" required>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+    </div>
+    <button type="submit" class="form-submit" id="submitBtn">🚀 JOIN GRUP BELAJAR GRATIS</button>
+    <div class="form-status" id="formStatus"></div>
+    <p class="form-note">Data Anda hanya digunakan untuk kebutuhan Live Learning ini.</p>
+  </form>
+  <p style="margin-top:28px; font-weight:600; color:rgba(255,255,255,0.85);">Belajar Hari Ini. Tingkatkan Value Anda Besok.</p>
+</section>
+
+<footer>
+  <div><strong>BOSS EXCEL</strong> — Live Learning Gratis</div>
+  <div style="margin-top:8px; max-width:640px; margin-left:auto; margin-right:auto;">
+    Disclaimer: Program ini merupakan sesi Live Learning gratis untuk tujuan edukasi. Hasil yang diperoleh setiap peserta dapat berbeda, tergantung pada proses belajar, latihan, dan penerapan masing-masing.
+  </div>
+</footer>
+
+<script>
+  // ====== KONFIGURASI (WAJIB DIISI SEBELUM PUBLISH) ======
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfC8Qmuur1HGvr_Ex2MPhZLBr1tsyMPlZJYIWJDzSDKikXE_jfRrI2fLOxrAczYGWo/exec";
+  const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/IMK4rTyW9ZmBu9xspVf3DN";
+  // ========================================================
+
+  const form = document.getElementById('registerForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusEl = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if(GOOGLE_SCRIPT_URL.includes("PASTE_URL_APPS_SCRIPT")){
+      statusEl.textContent = "⚠ Form belum terhubung ke Google Sheet. Ikuti panduan setup Apps Script sebelum publish.";
+      statusEl.className = "form-status show error";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Mengirim...";
+    statusEl.className = "form-status";
+
+    const formData = new FormData(form);
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    })
+    .then(function(){
+      statusEl.innerHTML = "✅ Pendaftaran berhasil! Mengarahkan ke grup WhatsApp...";
+      statusEl.className = "form-status show success";
+      form.reset();
+      setTimeout(function(){
+        window.location.href = WHATSAPP_GROUP_URL;
+      }, 1400);
+    })
+    .catch(function(){
+      statusEl.innerHTML = "Terjadi kendala saat mengirim data. Silakan langsung join grup di sini: <a class='wa-fallback' href='" + WHATSAPP_GROUP_URL + "' target='_blank'>Join Grup WhatsApp</a>";
+      statusEl.className = "form-status show error";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Daftar & Gabung Grup";
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
