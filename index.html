@@ -590,13 +590,17 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
       body: formData
     })
     .then(function(){
-      statusEl.innerHTML = "✅ Pendaftaran berhasil! Mengarahkan ke grup WhatsApp...";
-      statusEl.className = "form-status show success";
-      form.reset();
-      setTimeout(function(){
-        window.location.href = WHATSAPP_GROUP_URL;
-      }, 1400);
-    })
+  // Meta Pixel Lead Event
+  fbq('track', 'Lead');
+
+  statusEl.innerHTML = "✅ Pendaftaran berhasil! Mengarahkan ke grup WhatsApp...";
+  statusEl.className = "form-status show success";
+  form.reset();
+
+  setTimeout(function(){
+    window.location.href = WHATSAPP_GROUP_URL;
+  }, 1400);
+})
     .catch(function(){
       statusEl.innerHTML = "Terjadi kendala saat mengirim data. Silakan langsung join grup di sini: <a class='wa-fallback' href='" + WHATSAPP_GROUP_URL + "' target='_blank'>Join Grup WhatsApp</a>";
       statusEl.className = "form-status show error";
