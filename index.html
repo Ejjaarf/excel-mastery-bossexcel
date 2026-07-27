@@ -571,7 +571,7 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
 
 <script>
   // ====== KONFIGURASI (WAJIB DIISI SEBELUM PUBLISH) ======
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfC8Qmuur1HGvr_Ex2MPhZLBr1tsyMPlZJYIWJDzSDKikXE_jfRrI2fLOxrAczYGWo/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbypgBxwVKdeAwTRs-mThK4pADdcp5QOfHiRqH0nTR85FL0mdw0xZbvYMnPtbIuo1NRL/exec";
   const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/ClJK62WFMNmDiW7olstC99?s=cl&p=a&ilr=1";
   // ========================================================
 
@@ -582,7 +582,7 @@ src="https://www.facebook.com/tr?id=602169539233067&ev=PageView&noscript=1"
   form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    if(GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwfC8Qmuur1HGvr_Ex2MPhZLBr1tsyMPlZJYIWJDzSDKikXE_jfRrI2fLOxrAczYGWo/exec")){
+    if(GOOGLE_SCRIPT_URL.includes("APP_SCRIPT_URL")){
       statusEl.textContent = "⚠ Form belum terhubung ke Google Sheet. Ikuti panduan setup Apps Script sebelum publish.";
       statusEl.className = "form-status show error";
       return;
